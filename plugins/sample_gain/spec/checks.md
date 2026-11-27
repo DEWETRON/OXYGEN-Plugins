@@ -59,3 +59,12 @@
 | GAIN-7 | Details page: gain changed to -3 during data acquisition, the output follows; offset changed to 5. With the Add Channel checks above | pass |
 | GAIN-8 | While recording, gain and offset cannot be edited | pass |
 | GAIN-9 | Gain -3, offset 5: save the setup, delete the channel, load the setup: gain, offset and input are back | pass |
+
+## 2026-11-27: defaults and output range, scripted, headless
+
+- **Oxygen, ODK:** as above, `--no_gui`. **Plugin:** with the min/max range on gain and offset.
+
+| Rules | Check | Result |
+|---|---|---|
+| GAIN-3 | New channel without settings: gain 1, offset 0. Gain/offset 0/0, 0/5, -2/-7.5 and 1000000/0 are accepted, no output mismatches on a sync input | pass |
+| GAIN-10 | Input -10..10 V. Gain 0: -1..1 V for offset 0, 4..6 V for offset 5. Gain -2, offset -7.5: -27.5..12.5 V | pass |

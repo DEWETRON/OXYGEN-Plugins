@@ -10,7 +10,7 @@ Oxygen's formula channel can do the same calculation; the point here is the stru
   delivers no output.
 - **GAIN-2** `[done]` `output = gain * input + offset`, with one output sample per input sample
   at the same time, for synchronous and asynchronous inputs.
-- **GAIN-3** `[built]` Defaults are gain 1 and offset 0. Any finite number is allowed, including
+- **GAIN-3** `[done]` Defaults are gain 1 and offset 0. Any finite number is allowed, including
   zero and negative numbers.
 - **GAIN-4** `[done]` A value that is not a finite number is not accepted. In the Add Channel
   dialog the *Add* button is disabled; on an existing channel the previous value stays.
@@ -22,7 +22,7 @@ Oxygen's formula channel can do the same calculation; the point here is the stru
 - **GAIN-8** `[done]` The details page does not allow editing while Oxygen does not allow
   configuration changes.
 - **GAIN-9** `[done]` Saving and loading a setup restores input, gain and offset.
-- **GAIN-10** `[built]` The output range is the input range with gain and offset applied. If that
+- **GAIN-10** `[done]` The output range is the input range with gain and offset applied. If that
   range is empty (gain 0), it extends by 1 in both directions.
 
 ## Acceptance tests

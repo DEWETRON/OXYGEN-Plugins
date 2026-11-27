@@ -116,8 +116,8 @@ Coding agents follow [AGENTS.md](AGENTS.md); it is worth reading for people too.
 
 Anyone may open an issue. Code comes mainly from DEWETRON colleagues. There is no promise to
 review or merge pull requests from others. Changes to `main` go through a pull request with
-passing CI and a review by another person. Repository admins may merge without that review, but
-not without CI. Releases are approved by named maintainers.
+passing CI. A review by another person is welcome but not required. Releases are approved by
+named maintainers.
 
 ## License
 

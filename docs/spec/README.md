@@ -17,7 +17,7 @@ Every rule has an id with a prefix that is unique to the plugin (`GAIN-1`) and a
 Tests name the rules they cover in a comment (`// GAIN-2`). Checks in Oxygen are recorded in
 `spec/checks.md` with date, Oxygen version, operating system, ODK commit, rules and result.
 `scripts/check_specs.py` verifies that each `[done]` rule is mentioned in one of these. It cannot
-tell whether the test or check is good enough: the reviewer has to.
+tell whether the test or check is good enough: whoever merges the change has to.
 
 If code or the ODK changes in a way that affects a `[done]` rule, set it back to `[built]` until
 it is confirmed again. For a new Oxygen version, the recorded version shows what was tested.

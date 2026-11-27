@@ -34,13 +34,11 @@ the end; mark replaced ones as superseded.
 - **Consequence:** the build is defined by CMake presets, not by editor project files. Windows
   still builds with the MSVC 2022 compiler.
 
-## R6: Admins may merge without a review
+## R6: Merging needs CI, not an approval
 
-- **What:** `main` needs a pull request, passing CI and one approval. Repository admins may skip
-  the approval when they merge a pull request. CI, and the block on force pushes and deletion,
-  also apply to them.
-- **Why:** GitHub does not let authors approve their own pull request, so an admin working alone
-  could not merge.
-- **Consequence:** an admin's change can reach `main` without a second person looking at it.
-  Because this repository is public, check content before pushing in any case.
+- **What:** `main` needs a pull request and passing CI. No approval is required. Force pushes
+  and deletion are blocked. This applies to admins too.
+- **Why:** often only one person works on a change and nobody is available to review it.
+- **Consequence:** anyone with write access can merge their own change without a second person
+  looking at it. CI does not recognise confidential content, so check it before pushing.
 - **Revisit when:** there are enough maintainers to review each other.

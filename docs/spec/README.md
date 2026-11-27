@@ -32,6 +32,14 @@ it is confirmed again. For a new Oxygen version, the recorded version shows what
 A small bug fix needs a test that fails without it. Change the spec only if it was wrong or
 incomplete.
 
+## Plugin documentation (nice to have)
+
+Documentation for the users of a plugin is welcome but not required: what it does, how to set it
+up, what the settings mean, and its limitations. It can be AI generated. Whoever submits it
+checks it against the spec and the plugin's real behaviour. It must not present `[planned]`,
+`[built]` or `[gap]` behaviour as confirmed. A place for it is `plugins/<name>/docs/`, linked
+from the plugin's README. The publication rules apply to it too.
+
 ## Questions and decisions
 
 Open points go under **Questions**. Agents may add questions. An entry under **Decided** needs

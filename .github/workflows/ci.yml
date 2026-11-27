@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Pull requests from forks run this too: no secrets, no write access.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: specs, ODK version, QML syntax
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 scripts/check_specs.py
+      - run: python3 scripts/check_odk.py
+      - run: sudo apt-get update && sudo apt-get install -y qtdeclarative5-dev-tools
+      # syntax only: Oxygen's QML modules are not available here
+      - run: /usr/lib/qt5/bin/qmllint plugins/*/qml/*.qml
+
+  linux:
+    name: build and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        # packages come from the oldest one; the newer one is a compatibility check
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+      - run: sudo apt-get update && sudo apt-get install -y ninja-build qtbase5-dev libboost-test-dev
+      - run: cmake --preset linux
+      - run: cmake --build --preset linux
+      - run: ctest --preset linux
+      - uses: actions/upload-artifact@v4
+        if: matrix.os == 'ubuntu-22.04'
+        with:
+          name: plugins-linux-x64-${{ github.sha }}
+          path: build/linux/**/*.plugin
+          if-no-files-found: error
+
+  windows:
+    name: build and test (Windows)
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+      # only rcc.exe from Qt 5.12.6 and its CMake macros
+      - name: Get the Qt resource compiler
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $zip = "$env:RUNNER_TEMP\qt_resource_compiler.zip"
+          Invoke-WebRequest -Uri 'https://github.com/DEWETRON/OXYGEN-SDK/releases/download/OXYGEN-SDK-R6.3.0/qt_resource_compiler.zip' -OutFile $zip
+          $expected = 'ae52a55aee2a1505213e8e8f24e5e925819d15923e7a4a2f3be639726e632fbe'
+          if ((Get-FileHash $zip -Algorithm SHA256).Hash -ne $expected) { throw 'checksum mismatch' }
+          Expand-Archive -Path $zip -DestinationPath "$env:RUNNER_TEMP\qt"
+          "SDK_QT_PATH=$($env:RUNNER_TEMP -replace '\\','/')/qt/3rdparty/qt" >> $env:GITHUB_ENV
+      - name: Get the Boost headers
+        shell: pwsh
+        run: |
+          nuget install boost -Version 1.86.0 -OutputDirectory "$env:RUNNER_TEMP\deps"
+          if ($LASTEXITCODE -ne 0) { throw 'nuget failed' }
+          "BOOST_ROOT=$($env:RUNNER_TEMP -replace '\\','/')/deps/boost.1.86.0/lib/native/include" >> $env:GITHUB_ENV
+      - run: cmake --preset windows
+      - run: cmake --build --preset windows
+      - run: ctest --preset windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plugins-windows-x64-${{ github.sha }}
+          path: build/windows/**/*.plugin
+          if-no-files-found: error

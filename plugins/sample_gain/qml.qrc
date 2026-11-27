@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+<file alias="SampleGainAddChannel.qml">qml/SampleGainAddChannel.qml</file>
+<file alias="SampleGainChannelDetails.qml">qml/SampleGainChannelDetails.qml</file>
+</qresource>
+</RCC>

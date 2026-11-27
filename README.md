@@ -22,7 +22,7 @@ Status: **sample** shows how to build a plugin; **experimental** may change or b
 
 ## What you need
 
-| | Linux (Ubuntu) | Windows |
+| | Linux (Ubuntu 24.04 or newer) | Windows |
 |---|---|---|
 | Editor | Visual Studio Code | Visual Studio Code |
 | Compiler | `g++` | *Build Tools for Visual Studio 2022* with "Desktop development with C++" |

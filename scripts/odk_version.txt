@@ -1,3 +1,3 @@
 # The ODK commit this repository is allowed to record. Change it only in an ODK upgrade.
-# OXYGEN-SDK branch odk83: 8.3, not tagged yet. Replace with the release tag's commit.
+# OXYGEN-SDK tag OXYGEN-SDK-R8.3.0
 22a87435b7fa06a902e5e3d03e142653da8fca1b

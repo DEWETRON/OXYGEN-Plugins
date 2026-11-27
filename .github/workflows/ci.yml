@@ -16,7 +16,7 @@ concurrency:
 jobs:
   checks:
     name: specs, ODK version, QML syntax
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
       - run: python3 scripts/check_specs.py
@@ -26,13 +26,9 @@ jobs:
       - run: /usr/lib/qt5/bin/qmllint plugins/*/qml/*.qml
 
   linux:
-    name: build and test (${{ matrix.os }})
-    strategy:
-      fail-fast: false
-      matrix:
-        # packages come from the oldest one; the newer one is a compatibility check
-        os: [ubuntu-22.04, ubuntu-24.04]
-    runs-on: ${{ matrix.os }}
+    name: build and test (Linux)
+    # the oldest supported Ubuntu: plugins built here may not load on older ones
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
         with:
@@ -42,7 +38,6 @@ jobs:
       - run: cmake --build --preset linux
       - run: ctest --preset linux
       - uses: actions/upload-artifact@v4
-        if: matrix.os == 'ubuntu-22.04'
         with:
           name: plugins-linux-x64-${{ github.sha }}
           path: build/linux/**/*.plugin

@@ -33,3 +33,14 @@ the end; mark replaced ones as superseded.
 - **Why:** it is free, and coding agents integrate well with it.
 - **Consequence:** the build is defined by CMake presets, not by editor project files. Windows
   still builds with the MSVC 2022 compiler.
+
+## R6: Admins may merge without a review
+
+- **What:** `main` needs a pull request, passing CI and one approval. Repository admins may skip
+  the approval when they merge a pull request. CI, and the block on force pushes and deletion,
+  also apply to them.
+- **Why:** GitHub does not let authors approve their own pull request, so an admin working alone
+  could not merge.
+- **Consequence:** an admin's change can reach `main` without a second person looking at it.
+  Because this repository is public, check content before pushing in any case.
+- **Revisit when:** there are enough maintainers to review each other.

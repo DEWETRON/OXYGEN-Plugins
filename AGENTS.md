@@ -66,6 +66,9 @@ instructions for VS Code first. See `README.md` for what to install. Built plugi
 7. **Report only what ran.** Say what you built and tested, and what you did not. A successful
    build says nothing about the QML views: without a check in Oxygen they are not verified.
 8. **`main` changes through pull requests**, with passing CI and a review by another person.
+9. **Never merge a pull request or bypass a rule** unless the person you work for explicitly asks
+   for that pull request. With an admin's login you can skip the review (`gh pr merge --admin`):
+   being able to is not permission.
 
 ## Done means
 

@@ -16,6 +16,12 @@ matters).
 - Unit test: ... (XYZ-1)
 - In Oxygen: ... (XYZ-2)
 
+## Documentation
+
+Nice to have, not required: user documentation for the plugin. It can be AI generated, but
+check it before you submit it. See [the spec guide](README.md). Remove this section in your
+spec, or replace it with a link to the documentation.
+
 ## Decided
 
 None yet.

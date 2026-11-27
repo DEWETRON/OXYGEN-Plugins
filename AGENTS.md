@@ -59,6 +59,8 @@ instructions for VS Code first. See `README.md` for what to install. Built plugi
 4. **Keep logic testable.** Calculations and validation go into code without ODK includes (see
    `src/gain.h`), with unit tests. C++ owns settings, defaults and validation; QML only shows
    and edits them.
+   **Pitfall:** give every editable number a range (`setMinMaxConstraint`). Without one, Oxygen
+   shows it as read-only, although scripts can still change it.
 5. **Narrow, tested changes.** A bug fix comes with a test that fails without it.
 6. **No shared code between plugins** by including another plugin's files.
 7. **Report only what ran.** Say what you built and tested, and what you did not. A successful

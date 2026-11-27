@@ -12,14 +12,14 @@ Oxygen's formula channel can do the same calculation; the point here is the stru
   at the same time, for synchronous and asynchronous inputs.
 - **GAIN-3** `[built]` Defaults are gain 1 and offset 0. Any finite number is allowed, including
   zero and negative numbers.
-- **GAIN-4** `[built]` A value that is not a finite number is not accepted. In the Add Channel
+- **GAIN-4** `[done]` A value that is not a finite number is not accepted. In the Add Channel
   dialog the *Add* button is disabled; on an existing channel the previous value stays.
 - **GAIN-5** `[done]` NaN and infinite input samples follow normal floating-point arithmetic.
 - **GAIN-6** `[done]` The output has the unit of the input. The offset is in that unit.
-- **GAIN-7** `[built]` The Add Channel dialog sets gain and offset (the input is selected in the
+- **GAIN-7** `[done]` The Add Channel dialog sets gain and offset (the input is selected in the
   dialog's channel list). The dialog always shows the hint "Select exactly one input channel.
   Otherwise, Add creates nothing." The channel details show and edit gain and offset.
-- **GAIN-8** `[built]` The details page does not allow editing while Oxygen does not allow
+- **GAIN-8** `[done]` The details page does not allow editing while Oxygen does not allow
   configuration changes.
 - **GAIN-9** `[done]` Saving and loading a setup restores input, gain and offset.
 - **GAIN-10** `[built]` The output range is the input range with gain and offset applied. If that

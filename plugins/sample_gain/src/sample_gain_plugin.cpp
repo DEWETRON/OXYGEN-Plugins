@@ -53,6 +53,10 @@ public:
         , m_gain(std::make_shared<EditableFloatingPointProperty>(sample_gain::DEFAULT_GAIN))
         , m_offset(std::make_shared<EditableFloatingPointProperty>(sample_gain::DEFAULT_OFFSET))
     {
+        // without a range the ODK sends no constraint, and Oxygen shows the value as read-only
+        m_gain->setMinMaxConstraint(sample_gain::SETTING_MIN, sample_gain::SETTING_MAX);
+        m_offset->setMinMaxConstraint(sample_gain::SETTING_MIN, sample_gain::SETTING_MAX);
+
         m_input->setVisiblity("PUBLIC");
         m_gain->setVisiblity("PUBLIC");
         m_offset->setVisiblity("PUBLIC");

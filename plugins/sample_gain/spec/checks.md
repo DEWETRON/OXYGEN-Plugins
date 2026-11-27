@@ -28,3 +28,34 @@
 |---|---|---|
 | GAIN-1 | No channel selected: *Add* can be pressed, nothing is created, and there is no message. One selected: the channel is created | pass |
 | GAIN-7 | *Sample Gain* is listed and its settings show in the Add Channel dialog. Values and channel details not checked | part |
+
+## 2026-11-27: Add Channel dialog and channel details, by hand
+
+- **Oxygen, ODK:** as in the check above. **Plugin:** with the permanent hint.
+- **Checked by:** the repository owner.
+
+| Rules | Check | Result |
+|---|---|---|
+| GAIN-4 | Add Channel: `abc`, `1,5` and an empty gain, and `abc` as offset, disable *Add* and show an error. Details page not checked | part |
+| GAIN-7 | The hint is fully visible and wrapped. Gain 2 and offset 10 create a channel, and its details show 2 and 10. Editing on the details page not checked | part |
+
+## 2026-11-27: channel details, by hand
+
+- **Oxygen, ODK:** as above. **Checked by:** the repository owner.
+
+| Rules | Check | Result |
+|---|---|---|
+| GAIN-7 | Editing gain on the details page is not possible: the field is read-only. Cause: no min/max range on the setting. Fixed after this check, not yet confirmed | fail |
+
+## 2026-11-27: channel details, locked editing, save and load, by hand
+
+- **Oxygen, ODK:** as above. **Plugin:** with the min/max range on gain and offset.
+- **Checked by:** the repository owner, who reported that all listed steps work. What `1,5`
+  becomes on the details page was not reported.
+
+| Rules | Check | Result |
+|---|---|---|
+| GAIN-4 | Details page: after `abc` and an empty gain the previous value returns; `1,5` behaved as expected. With the Add Channel check above and the unit tests | pass |
+| GAIN-7 | Details page: gain changed to -3 during data acquisition, the output follows; offset changed to 5. With the Add Channel checks above | pass |
+| GAIN-8 | While recording, gain and offset cannot be edited | pass |
+| GAIN-9 | Gain -3, offset 5: save the setup, delete the channel, load the setup: gain, offset and input are back | pass |

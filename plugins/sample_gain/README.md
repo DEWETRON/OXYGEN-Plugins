@@ -3,8 +3,8 @@
 `output = gain * input + offset`. The sample to start new plugins from.
 
 **Status:** sample. **Maintainer:** to be named. **Behaviour:** [spec/gain.md](spec/gain.md),
-[checks in Oxygen](spec/checks.md). The QML views are only partly checked in Oxygen; the rule
-statuses show what is not confirmed.
+[checks in Oxygen](spec/checks.md). The QML views were checked in an unreleased Oxygen build on
+Linux; the check log shows what was covered.
 
 | File | What it shows |
 |---|---|
